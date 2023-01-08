@@ -27,7 +27,7 @@ const Logo = styled.h2`
 `
 
 const Red = styled.span`
-    color: red;
+    color: darkorange;
     opacity: 0.7;
 `
 
@@ -153,7 +153,7 @@ const Header = ({ showMenu, setShowMenu }) => {
                     <NavList>
                         <NavItem><NavLink><Link to="/">Home</Link></NavLink></NavItem>
                         <NavItem><NavLink><a href="#works">Works</a></NavLink></NavItem>
-                        <NavItem><NavLink><a href="#">About</a></NavLink></NavItem>
+                        <NavItem><NavLink><a href="#about">About</a></NavLink></NavItem>
                         <NavItem>
                             <Links>
                                 <Icon target="_blank" href="http://www.instagram.com"><AiOutlineInstagram /></Icon>
@@ -175,7 +175,7 @@ const Header = ({ showMenu, setShowMenu }) => {
                     <NavList phone={true}>
                         <NavItem><NavLink><Link to="/">Home</Link></NavLink></NavItem>
                         <NavItem><NavLink><a href="#works">Works</a></NavLink></NavItem>
-                        <NavItem><NavLink><a href="#">About</a></NavLink></NavItem>
+                        <NavItem><NavLink><a href="#about">About</a></NavLink></NavItem>
                     </NavList>
                 </Navbar>
                     <Links>

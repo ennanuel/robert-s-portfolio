@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { Header, Footer, Front, Works } from '../components'
+import { Front, Works, About } from '../components'
 
 const Home = () => {
   const divRef = useRef()
@@ -12,6 +12,7 @@ const Home = () => {
     <div ref={divRef}>
       <Front />
       <Works />
+      <About />
     </div>
   )
 }

@@ -42,7 +42,7 @@ const Title = styled.h2`
 
 const WorksContainer = styled.article`
     width: 100%;
-    margin: 100px 0;
+    margin-top: 100px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 20px;

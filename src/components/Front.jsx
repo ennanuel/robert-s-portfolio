@@ -51,6 +51,12 @@ const Desc = styled.p`
     color: gray;
     font-size: 40px;
     font-weight: 300;
+    text-align: center;
+`
+
+const Red = styled.span`
+    color: darkorange;
+    opacity: 0.7;
 `
 
 const ScrollDown = styled.a`
@@ -104,7 +110,7 @@ const Front = () => {
         <Intro>
             <Title>I'm Robert,</Title>
             <Desc>
-                A Digital Artist
+                <Red big={true}>"</Red>Welcome To The Mind Cloud!<Red big={true}>"</Red>
             </Desc>
         </Intro>
       </Intro>
