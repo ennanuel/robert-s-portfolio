@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import image from "../assets/images/image1.webp"
 
 const Container = styled.div`
     position: relative;
@@ -7,6 +6,7 @@ const Container = styled.div`
     overflow: hidden;
     border-radius: 5px;
     width: 100%;
+    height: 100%;
     padding: 0;
 
     &::before {
@@ -38,6 +38,7 @@ const Container = styled.div`
 
 const Image = styled.img`
     width: 100%;
+    height: 100%;
     object-fit: cover;
     cursor: pointer;
     transition: transform 0.5s ease;
@@ -50,10 +51,10 @@ const Image = styled.img`
 `
 
 
-const Work = () => {
+const Work = ({ data }) => {
   return (
     <Container>
-        <Image src={image} />
+        <Image src={data.image} />
     </Container>
   )
 }

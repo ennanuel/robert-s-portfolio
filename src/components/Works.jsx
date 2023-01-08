@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 import Work from "./Work"
+import { works } from "../assets/data"
 
 const Container = styled.section`
     width: 100%;
@@ -41,13 +42,11 @@ const Title = styled.h2`
 
 const WorksContainer = styled.article`
     width: 100%;
-    margin-top: 100px;
+    margin: 100px 0;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 20px;
 `
-
-const works = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
 const Works = () => {
   return (
@@ -57,7 +56,7 @@ const Works = () => {
         </TitleContainer>
         <WorksContainer className="workcontainer">
             {
-            works.map( work => <Link to="/artwork"><Work key={work} /></Link>)
+            works.map( work => <Link to={`/artwork/${work.id}`} key={work.id}><Work data={work} /></Link>)
             }
         </WorksContainer>
     </Container>

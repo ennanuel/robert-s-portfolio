@@ -1,21 +1,33 @@
 import styled from "styled-components"
 import { AiFillCaretDown } from "react-icons/ai"
-import frontImage from "../assets/images/image2.jpg"
+import { useEffect, useState } from "react"
+import { works } from "../assets/data"
 
 const Component = styled.div`
     width: 100vw;
     height: 100vh;
     position: relative;
+    background: #444;
+`
+
+const HeroContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  transition: opacity 0.5s ease;
+  opacity: 1;
+  overflow: hidden;
 `
 
 const FrontImage = styled.img`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
+    display: block;
 `
 
 const Intro = styled.div`
@@ -26,7 +38,7 @@ const Intro = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.4);
 `
 
 const Title = styled.h1`
@@ -64,9 +76,30 @@ const ScrollDown = styled.a`
 `
 
 const Front = () => {
+  const images = works.slice(0, 5).map(work => work.image)
+  const [index, setIndex] = useState(0)
+  const [hide, setHide] = useState(false)
+
+  useEffect( () => {
+    const handleHeroImages = async () => {
+      setHide(true)
+
+      await setTimeout( () => { 
+        setIndex( prev => prev === images.length - 1 ? 0 : prev + 1 )
+        setHide(false)
+      }, 500 )
+    }
+
+    let interval = setInterval(handleHeroImages, 6000)
+
+    return () => clearInterval(interval)
+  }, [index])
+
   return (
-    <Component>
-      <FrontImage src={frontImage} />
+    <Component className="hero">
+      <HeroContainer className={`${hide && "hide"}`}>
+        <FrontImage src={images[index]} />
+      </HeroContainer>
       <Intro>
         <Intro>
             <Title>I'm Robert,</Title>

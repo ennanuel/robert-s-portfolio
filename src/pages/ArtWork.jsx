@@ -1,7 +1,8 @@
 import styled from "styled-components"
 import { useRef, useEffect } from "react"
-import image from "../assets/images/image3.jpg"
 import { Work } from "../components"
+import { works } from "../assets/data"
+import { Link, useParams } from "react-router-dom"
 
 
 const Container = styled.section`
@@ -15,6 +16,7 @@ const ArtContainer = styled.article`
     align-items: center;
     padding: 30px;
     position: relative;
+    overflow: hidden;
 `
 
 const Info = styled.div`
@@ -33,7 +35,8 @@ const ImageContainer = styled.div`
 const Image = styled.img`
     width: 100%;
     height: auto;
-    object-fit: cover;
+    max-height: 90vh;
+    object-fit: contain;
     display: block;
 `
 
@@ -108,17 +111,18 @@ const WorksContainer = styled.article`
     grid-gap: 20px;
 `
 
-const works = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-
 const ArtWork = () => {
     const contRef = useRef()
-    useEffect(() => { contRef.current.scrollIntoView({ behavior: "smooth"}) }, [])
+    const { id } = useParams()
+    const data = works.filter( work => work.id === +id )[0]
+    console.log(data, id , works.map(work => work.id))
+    useEffect(() => { contRef.current.scrollIntoView({ behavior: "smooth"}) }, [id])
 
   return (
     <Container ref={contRef}>
         <ArtContainer className="artcontainer">
             <ImageContainer className="imagecontainer">
-                <Image src={image} />
+                <Image src={data?.image} />
             </ImageContainer>
             
             <Info className="info">
@@ -134,8 +138,8 @@ const ArtWork = () => {
             </SubHeadingContainer>
             
             <WorksContainer className="workcontainer">
-                {
-                    works.map( (work, i) => <Work key={i} />)
+                { 
+                    works.filter( work => work.id !== +id ).map( (work, i) => <Link to={`/artwork/${work.id}`}><Work key={work.id} data={work} /></Link>)
                 }
             </WorksContainer>
         </OtherWorks>

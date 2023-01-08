@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 import { AiOutlineInstagram, AiOutlineFacebook, AiFillCaretLeft, AiFillCaretRight } from "react-icons/ai"
 import { FiTwitter } from "react-icons/fi"
 import { useState, useEffect } from "react"
@@ -18,6 +19,11 @@ const Heading = styled.header`
 const Logo = styled.h2`
     font-weight: 400;
     cursor: pointer;
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
 `
 
 const Red = styled.span`
@@ -43,13 +49,21 @@ const Links = styled.div`
     display: flex;
     align-items: center;
     gap: 15px;
+
+    a {
+        color: inherit;
+    }
 `
 
-const Link = styled.a`
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
+const NavLink = styled.p`
     position: relative;
+
+    a {
+        text-decoration: none;
+        position: relative;
+        color: inherit;
+    }
+
 
     &::before {
         content: "";
@@ -59,12 +73,14 @@ const Link = styled.a`
         height: 2px;
         width: 100%;
         transform: scaleX(0);
-        background-color: ${props => props.noBefore ? "transparent" : "darkorange"};
+        background-color: darkorange;
         transition: transform 0.3s ease;
     }
 
     &:hover {
-        color: darkorange;
+        a {
+            color: darkorange;
+        }
 
         &::before {
             transform: scaleX(1);
@@ -72,7 +88,7 @@ const Link = styled.a`
     }
 `
 
-const Icon = styled.span`
+const Icon = styled.a`
     display: flex;
     justify-content: center;
     text-decoration: none;
@@ -132,34 +148,34 @@ const Header = ({ showMenu, setShowMenu }) => {
         {
             innerWidth > 720 ?
             <Heading className={`${scrolled && 'scrolled'}`}>
-                <Logo>Robert Orji<Red>.</Red></Logo>
-                <Navbar>
+                <Logo><Link to="/">Robert Orji<Red>.</Red></Link></Logo>
+                <Navbar onClick={() => setShowMenu(false)}>
                     <NavList>
-                        <NavItem><Link href="#">Home</Link></NavItem>
-                        <NavItem><Link href="#works">Works</Link></NavItem>
-                        <NavItem><Link href="#">About</Link></NavItem>
+                        <NavItem><NavLink><Link to="/">Home</Link></NavLink></NavItem>
+                        <NavItem><NavLink><a href="#works">Works</a></NavLink></NavItem>
+                        <NavItem><NavLink><a href="#">About</a></NavLink></NavItem>
                         <NavItem>
                             <Links>
-                                <Link noBefore={true}><Icon><AiOutlineInstagram /></Icon></Link>
-                                <Link noBefore={true}><Icon><AiOutlineFacebook /></Icon></Link>
-                                <Link noBefore={true}><Icon><FiTwitter /></Icon></Link>
+                                <Icon target="_blank" href="http://www.instagram.com"><AiOutlineInstagram /></Icon>
+                                <Icon target="_blank" href="http://www.facebook.com"><AiOutlineFacebook /></Icon>
+                                <Icon target="_blank" href="http://www.twitter.com"><FiTwitter /></Icon>
                             </Links>
                         </NavItem>
                     </NavList>
                 </Navbar>
             </Heading>: 
             <div className={`phoneheading ${showMenu && "moveright"}`}>
-                <Logo>Robert Orji<Red>.</Red></Logo>
+                <Logo><Link to="/">Robert Orji<Red>.</Red></Link></Logo>
                 {
                     showMenu ?
                     <MenuButton onClick={() => { setShowMenu(false) }}><AiFillCaretRight /></MenuButton> : 
                     <MenuButton onClick={() => { setShowMenu(true); console.log(showMenu) }}><AiFillCaretLeft /></MenuButton>
                 }
-                <Navbar>
+                <Navbar onClick={() => setShowMenu(false)}>
                     <NavList phone={true}>
-                        <NavItem><Link href="#">Home</Link></NavItem>
-                        <NavItem><Link href="#works">Works</Link></NavItem>
-                        <NavItem><Link href="#">About</Link></NavItem>
+                        <NavItem><NavLink><Link to="/">Home</Link></NavLink></NavItem>
+                        <NavItem><NavLink><a href="#works">Works</a></NavLink></NavItem>
+                        <NavItem><NavLink><a href="#">About</a></NavLink></NavItem>
                     </NavList>
                 </Navbar>
                     <Links>
