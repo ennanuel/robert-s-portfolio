@@ -1,0 +1,76 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Urbanist:ital,wght@0,300;0,500;0,900;1,600&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+}
+
+html, body {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+.scrolled {
+  height: 80px;
+  background-color: rgb(255 255 255 / 80%);
+  backdrop-filter: blur(8px);
+  color: #999;
+}
+
+.App {
+  width: 100vw;
+  position: relative;
+  transition: transform 0.5s ease;
+  transform: translateX(0);
+}
+
+.phoneheading {
+  position: fixed;
+  width: 60vw;
+  max-height: 100vh;
+  top: 0;
+  right: 0;
+  background-color: white;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 20px;
+  transition: transform 0.5s ease;
+  transform: translateX(100%);
+  background-color: rgb(200, 110, 0);
+  color: white !important;
+}
+
+.App.moveleft {
+  transform: translateX(-60%) !important;
+}
+
+.phoneheading.moveright {
+  transform: translateX(0%) !important;
+}
+
+@media screen and (max-width: 720px) {
+  .workcontainer {
+    padding: 10px !important;
+    margin: 0;
+  }
+
+  .artcontainer {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .artcontainer .imagecontainer {
+    flex: 0;
+  }
+
+  .artcontainer .info {
+    flex: 0;
+  }
+}
